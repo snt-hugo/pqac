@@ -1,0 +1,66 @@
+Presentation without compression:
+
+struct s_presentation_intern_t
+{
+  polyq1_t NTTq1_commit_t1; // 8 bytes for each coefficient
+  polyq2_t NTTq2_commit_t2; // 24 bytes for each coefficient
+  polyq1_t NTTq1_commit_t1_prime; // 8 bytes for each coefficient
+  polyq2_t NTTq2_commit_t2_prime; // 24 bytes for each coefficient
+  polyQ_t NTTQ_enc1; // 16 bytes for each coefficient
+  polyQ_t NTTQ_enc2_V3[3]; // 3 * 16 bytes for each coefficient
+  polyq1_t Rq1_z_V3[3]; // 3 * 8 bytes for each coefficient
+  polyq1_t Rq1_z_prime_V3[3]; // 3 * 8 bytes for each coefficient
+  polyq1_t Rq1_z1_V3[3]; // 3 * 8 bytes for each coefficient
+  polyq1_t Rq1_z5_V3[3]; // 3 * 8 bytes for each coefficient
+  polyQ_t RQ_zenc_V5[5]; // 5 * 16 bytes for each coefficient
+  polyq2_t Rq2_zs1_V4[4]; // 4 * 24 bytes for each coefficient
+  polyq2_t Rq2_zs2_V2[2]; // 2 * 24 bytes for each coefficient
+  challenge_t challenge_chall; // 8 bytes for each coefficient
+};
+typedef struct s_presentation_intern_t s_presentation_t[1];
+
+
+(8 + 24 + 8 + 24 + 16 + 3*16 + 3*8 + 3*8 + 3*8 + 3*8 + 5*16 + 4*24 + 2*24 + 8) * 8192 = 3735552 bytes. 
+Total of 3 735 552 bytes for the uncompressed presentation.
+
+Size of the uncompressed "xi block": (3*8 + 3*8 + 3*8 + 3*8 + 5*16) * 8192 = 1441792 bytes.
+Size of the uncompressed "xi1 block": 4*24 * 8192 = 786432 bytes.
+Size of the uncompressed "xi2 block": 2*24 * 8192 = 393216 bytes.
+
+
+
+Average size of the compressed polynomials of the presentation:
+- with coefficients modulo q1, sampled with the standard deviation xi:                      26442 bytes.
+- with coefficients modulo Q, sampled with the standard deviation xi:                       26442 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi1:                    112466 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi2:                    121434 bytes.
+
+Minimum size of the compressed polynomials of the presentation:
+- with coefficients modulo q1, sampled with the standard deviation xi:                      26389 bytes.
+- with coefficients modulo Q, sampled with the standard deviation xi:                       26385 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi1:                    112425 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi2:                    121408 bytes.
+
+Maximum size of the compressed polynomials of the presentation:
+- with coefficients modulo q1, sampled with the standard deviation xi:                      26485 bytes.
+- with coefficients modulo Q, sampled with the standard deviation xi:                       26486 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi1:                    112506 bytes.
+- with coefficients modulo q2, sampled with the standard deviation xi2:                    121453 bytes.
+
+Average size of a compressed presentation: 1923048 bytes.
+
+Minimum size of the compressed presentations: 1922865 bytes.
+
+Maximum size of the compressed presentations: 1923180 bytes.
+
+Average size of the block of elements sampled with xi in the compressed presentation:      449511 bytes.
+Minimum size of the blocks of elements sampled with xi in the compressed presentation:     449357 bytes.
+Maximum size of the blocks of elements sampled with xi in the compressed presentation:     449650 bytes.
+
+Average size of the block of elements sampled with xi1 in the compressed presentation:     449862 bytes.
+Minimum size of the blocks of elements sampled with xi1 in the compressed presentation:    449787 bytes.
+Maximum size of the blocks of elements sampled with xi1 in the compressed presentation:    449948 bytes.
+
+Average size of the block of elements sampled with xi2 in the compressed presentation:     242867 bytes.
+Minimum size of the blocks of elements sampled with xi2 in the compressed presentation:    242843 bytes.
+Maximum size of the blocks of elements sampled with xi2 in the compressed presentation:    242895 bytes.
